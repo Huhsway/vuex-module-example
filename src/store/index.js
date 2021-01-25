@@ -1,30 +1,12 @@
 import Vuex from 'vuex';
 import Vue from 'vue';
 
+import module1 from './module1'
+
 Vue.use(Vuex);
 
-const module1 = {
-  state: {
-    module1Value: 'Module 1'
-  },
-  getters: {
-    module1ValueWithHello(state, getters, rootState) {
-      return 'Hello, ' + state.module1Value;
-    }
-  },
-  mutations: {
-    setModule1Value(state, value) {
-      state.module1Value = value;
-    }
-  },
-  actions: {
-    setModule1Value(context, value) {
-      context.commit('setModule1Value', value);
-    }
-  }
-};
-
 const module2 = {
+  namespaced: true,
   state: {
     module2Value: 'Module 2'
   },
@@ -33,12 +15,12 @@ const module2 = {
       return 'Hello, ' + state.module2Value;
     }
   },
-  mutations: {
+  mutations: { // mutations는 상태값을 잘 변경해 준다.
     setModule2Value(state, value) {
       state.module2Value = value;
     }
   },
-  actions: {
+  actions: { // 각 action은 commit을 통해서 mutations를 실행하고
     setModule2Value(context, value) {
       context.commit('setModule2Value', value);
     }

@@ -34,11 +34,11 @@ export default {
     };
   },
   methods: {
-    changeModule1Value() {
-      this.$store.dispatch('setModule1Value', this.module1Value);
+    changeModule1Value() { // action에 사용자 값 넘김
+      this.$store.dispatch('module1/setModule1Value', this.module1Value);
     },
     changeModule2Value() {
-      this.$store.dispatch('setModule2Value', this.module2Value);
+      this.$store.dispatch('module2/setModule2Value', this.module2Value);
     }
   },
   computed: {
@@ -46,10 +46,10 @@ export default {
       module1: state => state.module1.module1Value,
       module2: state => state.module2.module2Value
     }),
-    ...mapGetters({
-      module1ValueWithHello: 'module1ValueWithHello',
-      module2ValueWithHello: 'module2ValueWithHello'
-    })
+    ...mapGetters({ // Getter로 가져와 출력
+      module1ValueWithHello: 'module1/module1ValueWithHello',
+      module2ValueWithHello: 'module2/module2ValueWithHello'
+    }) // 잘 보면 module1의 state는 명확하게 .찍어서 모듈화 시켜 성격에 맞게 분리 해놨지만 getters와 action은 (module1ValueWithHello, setModule1Value) 전역으로 동작 그래서 다른 모듈과 충돌할 가능성이 있음 namespace로 해결
   },
   components: {
   }
